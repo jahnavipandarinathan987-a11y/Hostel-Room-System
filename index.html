@@ -7,12 +7,14 @@
   <title>HostelHub | Hostel Management</title>
   <style>
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #f3f6fb;
       color: #17243b;
     }
+
     header {
       background: #173b67;
       color: white;
@@ -23,9 +25,16 @@
       flex-wrap: wrap;
       gap: 12px;
     }
+
     header h1 { margin: 0; font-size: 25px; }
     header p { margin: 5px 0 0; color: #d6e5ff; }
-    main { max-width: 1100px; margin: 28px auto; padding: 0 18px; }
+
+    main {
+      max-width: 1100px;
+      margin: 28px auto;
+      padding: 0 18px;
+    }
+
     .panel {
       background: white;
       padding: 24px;
@@ -33,13 +42,21 @@
       border-radius: 12px;
       box-shadow: 0 3px 14px #17243b12;
     }
+
     h2 { margin-top: 0; color: #173b67; }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 18px;
     }
-    label { display: block; font-weight: bold; margin: 12px 0 6px; }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 12px 0 6px;
+    }
+
     input, select {
       width: 100%;
       padding: 11px;
@@ -47,6 +64,7 @@
       border-radius: 6px;
       font-size: 15px;
     }
+
     button {
       border: 0;
       border-radius: 6px;
@@ -57,28 +75,65 @@
       cursor: pointer;
       margin-top: 14px;
     }
+
     button:hover { background: #174a85; }
     .secondary { background: #18816b; }
     .danger { background: #a53b43; }
-    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
-    .stat { background: #edf4ff; padding: 18px; border-radius: 9px; }
-    .stat strong { display: block; font-size: 27px; margin-top: 8px; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
+    }
+
+    .stat {
+      background: #edf4ff;
+      padding: 18px;
+      border-radius: 9px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 27px;
+      margin-top: 8px;
+    }
+
     .room {
       border: 1px solid #d8e1ee;
       border-radius: 8px;
       padding: 16px;
     }
+
     .available { color: #13805d; font-weight: bold; }
     .full { color: #b33440; font-weight: bold; }
-    .notice { margin-top: 12px; padding: 12px; border-radius: 6px; background: #eef4fb; }
-    .hidden { display: none; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 11px; border-bottom: 1px solid #e0e6ef; text-align: left; }
-    th { background: #edf4ff; }
+
+    .notice {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 6px;
+      background: #eef4fb;
+    }
+
     .table-wrap { overflow-x: auto; }
-    footer { text-align: center; padding: 20px; color: #68778b; }
+
+    table { width: 100%; border-collapse: collapse; }
+
+    th, td {
+      padding: 11px;
+      border-bottom: 1px solid #e0e6ef;
+      text-align: left;
+    }
+
+    th { background: #edf4ff; }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #68778b;
+    }
   </style>
 </head>
+
 <body>
 <header>
   <div>
@@ -89,23 +144,27 @@
 </header>
 
 <main>
-  <section class="panel" id="loginPanel">
+  <section class="panel">
     <h2>Student Login</h2>
     <p>Enter your student details to access hostel services.</p>
+
     <form id="loginForm">
       <div class="grid">
         <div>
           <label for="studentId">Student ID</label>
-          <input id="studentId" required maxlength="20" placeholder="e.g. KCT2026001">
+          <input id="studentId" required maxlength="20"
+                 placeholder="e.g. KCT2026001">
         </div>
         <div>
           <label for="studentName">Student Name</label>
-          <input id="studentName" required maxlength="60" placeholder="Enter your name">
+          <input id="studentName" required maxlength="60"
+                 placeholder="Enter your name">
         </div>
       </div>
+
       <button type="submit">Sign In</button>
       <button type="button" class="danger" id="logoutButton">Sign Out</button>
-      <div id="loginMessage" class="notice" role="status" aria-live="polite"></div>
+      <div id="loginMessage" class="notice" role="status"></div>
     </form>
   </section>
 
@@ -116,7 +175,10 @@
       <div class="stat">Available Beds<strong id="availableBeds">6</strong></div>
       <div class="stat">Applications<strong id="applicationCount">0</strong></div>
     </div>
-    <p class="notice">Demonstration data only. This prototype stores changes in this browser and does not use a live hostel database.</p>
+    <p class="notice">
+      Demonstration data only. This prototype stores changes in this browser
+      and does not use a live hostel database.
+    </p>
   </section>
 
   <section class="panel">
@@ -124,13 +186,14 @@
     <div class="grid" id="roomList"></div>
   </section>
 
-  <section class="panel" id="applicationPanel">
+  <section class="panel">
     <h2>Hostel Room Application</h2>
     <form id="applicationForm">
       <div class="grid">
         <div>
           <label for="appStudentId">Student ID</label>
-          <input id="appStudentId" required maxlength="20" placeholder="Sign in first">
+          <input id="appStudentId" required maxlength="20"
+                 placeholder="Sign in first">
         </div>
         <div>
           <label for="roomChoice">Preferred Room</label>
@@ -140,11 +203,13 @@
         </div>
         <div>
           <label for="reason">Reason for Application</label>
-          <input id="reason" required maxlength="200" placeholder="Briefly explain your need">
+          <input id="reason" required maxlength="200"
+                 placeholder="Briefly explain your need">
         </div>
       </div>
+
       <button type="submit">Submit Application</button>
-      <div id="applicationMessage" class="notice" role="status" aria-live="polite"></div>
+      <div id="applicationMessage" class="notice" role="status"></div>
     </form>
   </section>
 
@@ -153,7 +218,12 @@
     <div class="table-wrap">
       <table>
         <thead>
-          <tr><th>Application ID</th><th>Student ID</th><th>Room</th><th>Status</th></tr>
+          <tr>
+            <th>Application ID</th>
+            <th>Student ID</th>
+            <th>Room</th>
+            <th>Status</th>
+          </tr>
         </thead>
         <tbody id="applicationRows">
           <tr><td colspan="4">No applications submitted yet.</td></tr>
@@ -173,19 +243,25 @@
     { id: "B202", capacity: 3, occupied: 1 }
   ];
 
-  let rooms = JSON.parse(localStorage.getItem("hostelRooms") || "null") || initialRooms;
-  let applications = JSON.parse(localStorage.getItem("hostelApplications") || "[]");
+  let rooms = JSON.parse(localStorage.getItem("hostelRooms") || "null")
+              || initialRooms;
+
+  let applications =
+    JSON.parse(localStorage.getItem("hostelApplications") || "[]");
+
   let currentStudent = null;
 
   const byId = id => document.getElementById(id);
-  const save = () => {
+
+  function save() {
     localStorage.setItem("hostelRooms", JSON.stringify(rooms));
     localStorage.setItem("hostelApplications", JSON.stringify(applications));
-  };
+  }
 
   function renderRooms() {
     byId("roomList").innerHTML = "";
-    byId("roomChoice").innerHTML = '<option value="">Select a room</option>';
+    byId("roomChoice").innerHTML =
+      '<option value="">Select a room</option>';
 
     rooms.forEach(room => {
       const available = room.capacity - room.occupied;
@@ -194,17 +270,25 @@
 
       const title = document.createElement("h3");
       title.textContent = "Room " + room.id;
+
       const details = document.createElement("p");
-      details.textContent = `Capacity: ${room.capacity} | Occupied: ${room.occupied}`;
+      details.textContent =
+        `Capacity: ${room.capacity} | Occupied: ${room.occupied}`;
+
       const status = document.createElement("p");
       status.className = available > 0 ? "available" : "full";
-      status.textContent = available > 0 ? `${available} bed(s) available` : "Full";
+      status.textContent = available > 0
+        ? `${available} bed(s) available`
+        : "Full";
 
       card.append(title, details, status);
+
       if (available > 0) {
         const option = document.createElement("option");
         option.value = room.id;
-        option.textContent = `${room.id} (${available} bed(s) available)`;
+        option.textContent =
+          `${room.id} (${available} bed(s) available)`;
+
         byId("roomChoice").appendChild(option);
 
         const button = document.createElement("button");
@@ -213,30 +297,38 @@
         button.addEventListener("click", () => allocateBed(room.id));
         card.appendChild(button);
       }
+
       byId("roomList").appendChild(card);
     });
 
     byId("totalRooms").textContent = rooms.length;
-    byId("availableBeds").textContent =
-      rooms.reduce((sum, room) => sum + room.capacity - room.occupied, 0);
+
+    byId("availableBeds").textContent = rooms.reduce(
+      (sum, room) => sum + room.capacity - room.occupied, 0
+    );
+
     byId("applicationCount").textContent = applications.length;
   }
 
   function renderApplications() {
     const body = byId("applicationRows");
     body.innerHTML = "";
+
     if (!applications.length) {
-      body.innerHTML = '<tr><td colspan="4">No applications submitted yet.</td></tr>';
+      body.innerHTML =
+        '<tr><td colspan="4">No applications submitted yet.</td></tr>';
       return;
     }
 
     applications.forEach(app => {
       const row = document.createElement("tr");
+
       [app.id, app.studentId, app.room, app.status].forEach(value => {
         const cell = document.createElement("td");
         cell.textContent = value;
         row.appendChild(cell);
       });
+
       body.appendChild(row);
     });
   }
@@ -246,30 +338,38 @@
       alert("Please sign in before allocating a bed.");
       return;
     }
+
     const room = rooms.find(item => item.id === roomId);
+
     if (!room || room.occupied >= room.capacity) {
       alert("This room is full or unavailable.");
       renderRooms();
       return;
     }
+
     room.occupied++;
     save();
     renderRooms();
+
     alert(`A demonstration bed has been allocated in room ${roomId}.`);
   }
 
   byId("loginForm").addEventListener("submit", event => {
     event.preventDefault();
+
     const id = byId("studentId").value.trim();
     const name = byId("studentName").value.trim();
 
     if (!id || !name) {
-      byId("loginMessage").textContent = "Please enter both student ID and name.";
+      byId("loginMessage").textContent =
+        "Please enter both student ID and name.";
       return;
     }
+
     currentStudent = { id, name };
     byId("session").textContent = `Signed in: ${name}`;
     byId("appStudentId").value = id;
+
     byId("loginMessage").textContent =
       "Signed in for this demonstration. This is not secure, server-side authentication.";
   });
@@ -283,25 +383,35 @@
 
   byId("applicationForm").addEventListener("submit", event => {
     event.preventDefault();
+
     const studentId = byId("appStudentId").value.trim();
     const roomId = byId("roomChoice").value;
     const reason = byId("reason").value.trim();
     const room = rooms.find(item => item.id === roomId);
 
     if (!currentStudent || studentId !== currentStudent.id) {
-      byId("applicationMessage").textContent = "Please sign in with the same student ID first.";
+      byId("applicationMessage").textContent =
+        "Please sign in with the same student ID first.";
       return;
     }
+
     if (!roomId || !reason || !room) {
-      byId("applicationMessage").textContent = "Please select a room and enter a reason.";
+      byId("applicationMessage").textContent =
+        "Please select a room and enter a reason.";
       return;
     }
+
     if (room.occupied >= room.capacity) {
-      byId("applicationMessage").textContent = "That room is full. Please select another room.";
+      byId("applicationMessage").textContent =
+        "That room is full. Please select another room.";
       return;
     }
-    if (applications.some(app => app.studentId === studentId && app.status === "Pending")) {
-      byId("applicationMessage").textContent = "You already have a pending application.";
+
+    if (applications.some(app =>
+      app.studentId === studentId && app.status === "Pending"
+    )) {
+      byId("applicationMessage").textContent =
+        "You already have a pending application.";
       return;
     }
 
@@ -312,10 +422,14 @@
       reason,
       status: "Pending"
     });
+
     save();
     renderApplications();
     renderRooms();
-    byId("applicationMessage").textContent = "Application submitted successfully. Status: Pending.";
+
+    byId("applicationMessage").textContent =
+      "Application submitted successfully. Status: Pending.";
+
     byId("reason").value = "";
     byId("roomChoice").value = "";
   });
